@@ -6,7 +6,6 @@ You can use it to provison a dedicated server or even a virtual machine using th
 It uses [Ansible](http://www.ansible.com/) as a provisionner, make sure to install Ansible before (version >= 1.6).
 
 What gets installed with this playbook:
-*  Zsh and Oh My Zsh
 *  PostgreSQL
 *  NginX webserver/reverse proxy
 *  Python, Pip & VirtualEnv
@@ -90,16 +89,6 @@ If you don't own a valid SSL certificate you can still generate a self-signed on
 ```
 $ cd files/ssl ; openssl req -x509 -newkey rsa:2048 -keyout ssl_certif.pem -out ssl_certif.pem -days 365 -nodes
 ```
-
-## Misc
-
-### Different OSes
-
-By default, the Vagrant box runs Ubuntu 12.04, but the playbook supports Debian 7 and CentOS 6.4 as well! To try those out, uncomment the appropriate lines in the Vagrantfile and comment out the Debian lines.
-
-### Known issues
-
-* On CentOS, the firewall is completely closed by default (at least on the box I tried it with). So you have to manually open the relevant port (80) using `iptables`, or if you're not concerned about security (because you're running it locally through Vagrant), you can always flush the firewall with `iptables -F`.
 
 
 ## Thanks

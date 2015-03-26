@@ -1,8 +1,7 @@
-# Check if node is installed somewhere in the path or at the default location
-- name: test if nodejs is installed
-  shell: /usr/bin/test -n "$(node -v 2> /dev/null)" -o -n "$(/usr/local/bin/node -v 2> /dev/null)"
-  ignore_errors: True
-  register: node_installed
+- name: Add nodejs apt repository
+  apt_repository: repo=ppa:chris-lea/node.js state=present
 
-- include: node.yml
-  when: node_installed.rc == 1
+- name: Install nodejs
+  action: apt pkg={{ item }} state=installed force=yes
+  with_items:
+    - nodejs

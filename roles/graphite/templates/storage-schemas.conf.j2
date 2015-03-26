@@ -7,15 +7,15 @@
 
 # Carbon's internal metrics. This entry should match what is specified in
 # CARBON_METRIC_PREFIX and CARBON_METRIC_INTERVAL settings
-[carbon]
-pattern = ^carbon\.
-retentions = 60:90d
+# [carbon]
+# pattern = ^carbon\.
+# retentions = 60:90d
 
-[default_1min_for_90day]
-pattern = .*
-retentions = 60s:90d
+# [default_1min_for_90day]
+# pattern = .*
+# retentions = 60s:90d
 
 
 [statsd]
 pattern = ^stats.*
-retentions = 10s:6h,1min:7d,10min:5y
+retentions = 10s:1d,1min:7d,10min:5y
