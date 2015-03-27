@@ -10,9 +10,9 @@ server {
 server {
 
     {% if grafana_nginx_enable_ssl %}
-      listen {{ grafana_nginx_listen }}:443 ssl;
+      listen *:443 ssl;
     {% else %}
-      listen {{ grafana_nginx_listen }};
+      listen *;
     {% endif %}
 
     server_name {{ grafana_nginx_server_name }};

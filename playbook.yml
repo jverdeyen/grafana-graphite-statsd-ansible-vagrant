@@ -1,6 +1,6 @@
 ---
-- hosts: "{{target}}"
-  remote_user: vagrant
+- hosts: all
+  remote_user: root
   sudo: True
   vars:
     user: root
@@ -10,7 +10,7 @@
       workers: 4
       secret_key: 'ob3sow^ik#4q(k5*tgw&6j+osyr^@0jus$yd+-#^&^d#%yim1!'
       nginx_server_port: 8082 ## port on which you can access Graphite, port 80 is reserved for grafana, if you use 80 you won't be able to access graphite
-      nginx_server_name: 10.0.0.20
+      nginx_server_name: "{{ inventory_hostname }}"
       nginx_htpasswd: 'admin:YWG41BPzVAkN6'
       nginx_enable_ssl: false
       nginx_server_port_ssl: 8083 ## port to use for SSL (443 is reserved for grafana)
@@ -22,14 +22,16 @@
       host: 0.0.0.0
       ssl: no
 
-    grafana_version: 1.6.1
-    grafana_nginx_listen: "*" # nginx listen address, `127.0.0.1` by default, you need to use the public ip with you want an external access
-    grafana_nginx_server_name: 10.0.0.20
+    grafana_version: 1.9.1
+    grafana_nginx_listen: "{{ inventory_hostname }}" # nginx listen address, `127.0.0.1` by default, you need to use the public ip with you want an external access
+    grafana_nginx_server_name: "{{ inventory_hostname }}"
     grafana_nginx_htpasswd: 'admin:YWG41BPzVAkN6'
     grafana_nginx_enable_ssl: false
     grafana_nginx_ssl_path: "/etc/nginx/ssl/grafana" ## Folder where the SSL files will be added, default to /etc/nginx/ssl
     grafana_nginx_ssl_cert: ssl_certif.pem
     grafana_nginx_ssl_key: ssl_certif.key
+    grafana_elasticsearch_url: "http://{{ inventory_hostname }}:9200"
+    grafana_graphite_url: "http://{{ inventory_hostname }}:8080"
 
   roles:
     - common

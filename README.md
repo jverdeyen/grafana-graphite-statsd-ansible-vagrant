@@ -8,10 +8,9 @@ It uses [Ansible](http://www.ansible.com/) as a provisionner, make sure to insta
 What gets installed with this playbook:
 *  PostgreSQL
 *  NginX webserver/reverse proxy
-*  Python, Pip & VirtualEnv
+*  Python & Pip
 *  NodeJS
 *  Memcached
-*  ElasticSearch
 *  StatsD
 *  Grahite with its components:
 	* [Carbon](https://github.com/graphite-project/carbon)
