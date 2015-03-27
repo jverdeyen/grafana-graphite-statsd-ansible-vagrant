@@ -22,11 +22,6 @@
       host: 0.0.0.0
       ssl: no
 
-    db_graphite:
-      name: graphite
-      user: graphite
-      password: graphite
-
     grafana_version: 1.6.1
     grafana_nginx_listen: "*" # nginx listen address, `127.0.0.1` by default, you need to use the public ip with you want an external access
     grafana_nginx_server_name: 10.0.0.20
@@ -41,7 +36,6 @@
     - python
     - supervisor
     - { role: nginx, nginx_sites: none }
-    - postgres
     - graphite
     - nodejs
     - statsd

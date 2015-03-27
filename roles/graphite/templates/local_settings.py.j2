@@ -47,7 +47,7 @@ TIME_ZONE = 'Europe/Brussels'
 # You should not use the loopback address (127.0.0.1) here if using clustering
 # as every webapp in the cluster should use the exact same values to prevent
 # unneeded cache misses. Set to [] to disable caching of images and fetched data
-MEMCACHE_HOSTS = ['localhost:11211']
+#MEMCACHE_HOSTS = ['localhost:11211']
 #DEFAULT_CACHE_DURATION = 60 # Cache images and data for 1 minute
 
 
@@ -131,7 +131,7 @@ LDAP_USER_QUERY = "{{ graphite_ldap_user_query }}"
 # See http://www.python-ldap.org/ for further details on these options.
 
 ## REMOTE_USER authentication. See: https://docs.djangoproject.com/en/dev/howto/auth-remote-user/
-#USE_REMOTE_USER_AUTHENTICATION = True
+USE_REMOTE_USER_AUTHENTICATION = False
 
 # Override the URL for the login link (e.g. for django_openid_auth)
 #LOGIN_URL = '/account/login'
@@ -158,17 +158,15 @@ LDAP_USER_QUERY = "{{ graphite_ldap_user_query }}"
 # The default is 'django.db.backends.sqlite3' with file 'graphite.db'
 # located in STORAGE_DIR
 #
+
 DATABASES = {
     'default': {
-        # You can swap out the engine for MySQL easily by changing this value
-        # to ``django.db.backends.mysql`` or to PostgreSQL with
-        # ``django.db.backends.postgresql_psycopg2``
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': '{{ db_graphite.name }}',
-        'USER': '{{ db_graphite.user }}',
-        'PASSWORD': '{{ db_graphite.password }}',
-        'HOST': 'localhost',
-        'PORT': '',
+        'NAME': '/opt/graphite/storage/graphite.db',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': ''
     }
 }
 
